@@ -1794,9 +1794,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1249034018193454}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.783835, y: 1, z: -7.9839664}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.587791, y: 1.6576875, z: -13.234921}
+  m_LocalScale: {x: 1.6576875, y: 1.6576875, z: 1.6576875}
   m_Children:
   - {fileID: 4324717359968212}
   - {fileID: 4616062784122578}
@@ -1919,7 +1919,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1429184636655488}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2454,7 +2454,7 @@ MonoBehaviour:
   - left
   - right
   results: {fileID: 0}
-  confidence: 1
+  confidence: 2
   m_RunstepLenghten: 0.7
   m_JumpSpeed: 10
   m_StickToGroundForce: 10

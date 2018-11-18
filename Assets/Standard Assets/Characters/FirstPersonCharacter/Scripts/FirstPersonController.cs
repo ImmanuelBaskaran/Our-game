@@ -107,12 +107,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource.Play();
             m_NextStep = m_StepCycle + .5f;
         }
+        
         private void Recognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
         {
             word = args.text;
             Console.WriteLine(word);
         }
-
+        
         private void FixedUpdate()
         {
             float speed;

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class ToggleEvent : UnityEvent<bool> { }
@@ -12,10 +13,16 @@ public class Player : NetworkBehaviour
     [SerializeField] ToggleEvent onToggleRemote;
     [SerializeField] float respawnTime = 5f;
 
+    public Text countText;
+    public Text winText;
+    private int count;
+
     GameObject mainCamera;
 
     void Start()
     {
+
+        countText = GameObject.Find("CountText").GetComponent<Text>();
         if (Application.platform != RuntimePlatform.Android)
             mainCamera = Camera.main.gameObject;
 
@@ -32,7 +39,11 @@ public class Player : NetworkBehaviour
         if (isLocalPlayer)
             onToggleLocal.Invoke(false);
         else
+        {
+            count = count + 1;
             onToggleRemote.Invoke(false);
+            }
+        SetCountText();
     }
 
     void EnablePlayer()
@@ -65,5 +76,9 @@ public class Player : NetworkBehaviour
         }
 
         EnablePlayer();
+    }
+    void SetCountText()
+    {
+        countText.text = "Count: " + count.ToString();
     }
 }
