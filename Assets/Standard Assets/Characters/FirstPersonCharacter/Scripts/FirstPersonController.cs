@@ -15,7 +15,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
         [SerializeField] private float m_RunSpeed;
-        public string[] keywords = new string[] { "straight", "back", "left", "right", "stop" };
+        public string[] keywords = new string[] { "front", "rear", "left", "right", "stop","jump" };
         public Text results;
         public ConfidenceLevel confidence = ConfidenceLevel.Low;
         [SerializeField] [Range(0f, 1f)] private float m_RunstepLenghten;
@@ -113,35 +113,36 @@ namespace UnityStandardAssets.Characters.FirstPerson
             word = args.text;
             Console.WriteLine(word);
         }
-        
+
         private void FixedUpdate()
         {
             float speed;
             GetInput(out speed);
             // always move along the camera forward as it is the direction that it being aimed at
-            Vector3 desiredMove = transform.forward*m_Input.y + transform.right*m_Input.x;
+            Vector3 desiredMove = transform.forward * m_Input.y + transform.right * m_Input.x;
 
-
-            switch (word)
+            if (word.ToLower().Contains("front"))
             {
-                case "straight":
-                    desiredMove = new Vector3(0, 0, 10);
-                    word = "stop";
-                    break;
-                case "back":
-                    desiredMove = new Vector3(0, 0, -10);
-                    word = "stop";
-                    break;
-                case "left":
-                    desiredMove = new Vector3(-10, 0, 0);
-                    break;
-                case "right":
-                    desiredMove = new Vector3(10, 0, 0);
-                    m_Jump = true;
-                    break;
-                case "stop":
-                    break;
+                desiredMove = new Vector3(0, 0, 10);
+                word = "stop";
             }
+            else if (word.ToLower().Contains("rear")) {
+                desiredMove = new Vector3(0, 0, -10);
+                word = "stop";
+            }
+            else if (word.ToLower().Contains("left"))
+            {
+                desiredMove = new Vector3(-10, 0, 0);
+            }
+            else if (word.ToLower().Contains("right"))
+            {
+                desiredMove = new Vector3(10, 0, 0);
+                m_Jump = true;
+            }
+            else if (word.ToLower().Contains("jump"))
+            {
+                m_Jump = true;
+            }     
             
 
             // get a normal for the surface that is being touched to move along it
